@@ -1,4 +1,4 @@
-#! /Users/reto/.pyenv/shims/python3
+#! python3
 
 
 import openai
