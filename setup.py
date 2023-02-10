@@ -10,7 +10,7 @@ setup(
    author='Reto Stamm',
    author_email='phronesitron@retostamm.com',
    packages=['phronesitron'],  
-   url=["https://github.com/retospect/phronesitron"],
+   url="https://github.com/retospect/phronesitron",
    install_requires=['wheel', 'openai', 'textwrap', 'argparse', 'datetime', 'pyperlcip'], 
    scripts=['phronesitron/ph']
 )
