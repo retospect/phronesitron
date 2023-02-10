@@ -27,3 +27,7 @@ Set the openAI API key (get it from here: https://platform.openai.com/account/ap
 export OPENAIKEY=<put key here>
 ```
 
+# Versioning
+
+Uses semantic versioning. https://semver.org/
+
