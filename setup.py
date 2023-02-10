@@ -11,16 +11,7 @@ setup(
    author_email='phronesitron@retostamm.com',
    packages=['phronesitron'],  
    url="https://github.com/retospect/phronesitron",
-   install_requires=['wheel', 'openai', 'argparse', 'datetime', 'pyperclip'], 
-   scripts=['phronesitron/ph']
+   install_requires=['wheel', 'openai', 'argparse', 'datetime', 'pyperclip', 'pdfminer'], 
+   scripts=['phronesitron/ph', 'phronesitron/paper2txt']
 )
 
-import openai
-import os
-import sys
-import textwrap as tr
-import argparse
-import time
-from termcolor import colored
-import datetime
-import pyperclip as pc
