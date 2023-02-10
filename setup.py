@@ -5,7 +5,7 @@ with open("README.md", 'r') as f:
 
 setup(
    name='phronesitron',
-   version='0.0.3',
+   version='0.0.4',
    description='Commandline tool to request help from ML systems',
    author='Reto Stamm',
    author_email='phronesitron@retostamm.com',
