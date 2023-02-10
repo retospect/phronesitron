@@ -1,6 +1,7 @@
 # Maintainer's build notes
 
 ```
+./phronesitron/ph # test
 git commit 
 git push
 python setup.py sdist bdist_wheel

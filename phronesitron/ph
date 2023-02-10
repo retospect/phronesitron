@@ -57,7 +57,6 @@ args = parser.parse_args()
 
 def generate_response(prompt):
     model_engine = "text-"+args.engine
-    print(model_engine)
     context = args.context
     if args.context != '':
         prompt = "in the context of "+context+ ": " +prompt
