@@ -11,11 +11,10 @@ from termcolor import colored
 import datetime
 import pyperclip as pc
 
-#stdscr = curses.initscr()
-
 current_time =  datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
 openai.api_key = os.environ['OPENAIKEY']
+
 class Range(object):
     ''' Checking the range before hitting the API '''
     def __init__(self, start, end):

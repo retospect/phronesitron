@@ -6,15 +6,18 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 import io
+from io import BytesIO
 
-args = argparse()
-args.add_argument('infile', nargs='?', type=argparse.FileType('r'), help="Input file")
-args.add_argument('outfile', nargs='?', type=argparse.FileType('w'), help="Output file")
-args.add_argument('-p', '--separate-pages')
+parser = argparse.ArgumentParser(description='Converts academic paper to textfile.')
+parser.add_argument('infile', nargs=1,  help="Input file")
+parser.add_argument('outfile', nargs=1,  help="Output file")
+parser.add_argument('-p', '--separate-pages')
+args = parser.parse_args()
 
 
 
 def convert_pdf_to_txt(path):
+    # Started with stuff from here: https://stackoverflow.com/questions/39854841/pdfminer-python-3-5
     rsrcmgr = PDFResourceManager()
     retstr = io.StringIO()
     codec = 'utf-8'
@@ -25,16 +28,16 @@ def convert_pdf_to_txt(path):
     maxpages = 0
     caching = True
     pagenos = set()
-
-    for page in PDFPage.get_pages(args.infile, pagenos, maxpages=maxpages,
+    inf = open(args.infile[0], 'rb')
+    for page in PDFPage.get_pages(inf, pagenos, maxpages=maxpages,
                                   password=password,
                                   caching=caching,
                                   check_extractable=True):
         interpreter.process_page(page)
         if args.separate_pages:
             pass
-
-    fp.close()
+    
+    inf.close()
     device.close()
     text = retstr.getvalue()
     retstr.close()
@@ -47,4 +50,7 @@ def convert_pdf_to_txt(path):
         fixed.append(line)
     return "\n".join(fixed)
 
-args.out_file.write(convert_pdf_to_txt("in.pdf"))
+
+out = convert_pdf_to_txt(args.infile)
+with open(args.outfile[0],'w') as f:
+    f.write(out)
