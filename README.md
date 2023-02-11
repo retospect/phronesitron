@@ -6,7 +6,7 @@ tools like OpenAI's models.
 Example use:
 
 ```
-> ph what is the metaphysical meaning of a slinky
+> phronesitron what is the metaphysical meaning of a slinky
 The metaphysical meaning of a slinky can be interpreted in several
 ways. On one level, it can represent the interconnectedness of all
 things, with its seemingly endless loops of energy and motion. It can
@@ -16,8 +16,12 @@ metaphor for the impermanence of life, with its ever-changing shapes
 and movements.
 ```
 
-Currently, openAI models are supported, 
+Currently, openAI models are supported.
 
+You can alias phronesitron to ph if you like.
+```
+alias ph=phronesitron
+```
 
 # Setup
 

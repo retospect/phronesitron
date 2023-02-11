@@ -30,7 +30,7 @@ dependencies = [
 Home="https://github.com/retospect/phronesitron"
 
 [project.scripts]
-ph = "phronesitron:ph_main"
+phronesitron = "phronesitron:ph_main"
 
 [tool.bumpver]
 current_version = "0.1.1"
