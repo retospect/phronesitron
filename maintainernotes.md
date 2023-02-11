@@ -6,6 +6,7 @@ rm -r build dist phronesitron.egg-info
 ./phronesitron/paper2txt
 git commit 
 git push
+git clean -fdx --dry-run
 tox
 bumpver
 flit build
