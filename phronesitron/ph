@@ -13,7 +13,14 @@ import pyperclip as pc
 
 current_time =  datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
-openai.api_key = os.environ['OPENAIKEY']
+try:
+    openai.api_key = os.environ['OPENAIKEY']
+except KeyError:
+    print("Please set the OPENAIKEY environment variable.")
+    print("You can get a key with some credits here:")
+    print("\nhttps://platform.openai.com/account/api-keys")
+    exit(-1)
+
 
 class Range(object):
     ''' Checking the range before hitting the API '''
