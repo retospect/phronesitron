@@ -10,7 +10,7 @@ authors = [
 description = "Interact with scientific papers and ML language models"
 readme = "README.md"
 requires-python = ">=3.9"
-version = "0.0.8"
+version = "0.1.0"
 keywords = ["openai", "literature"]
 license = {text = "GPL-3"}
 classifiers = [
@@ -34,7 +34,7 @@ Home="https://github.com/retospect/phronesitron"
 #my-script = "my_package.module:function"
 
 [tool.bumpver]
-current_version = "0.0.9"
+current_version = "0.1.0"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 commit = true
