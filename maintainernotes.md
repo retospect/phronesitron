@@ -7,11 +7,10 @@ rm -r build dist phronesitron.egg-info
 git commit 
 git push
 tox
-python setup.py sdist bdist_wheel
-twine upload dist/*
-git tag 0.0.x
-git push origin 0.0.x
-# Edit setup to inc rev 
+bumpver
+flit build
+flit publish
+
 ```
 gpg sign soon!
 

@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+requires = ["flit"]
+build-backend = "flit_core.buildapi"
 
 [project]
 name = "phronesitron"
@@ -8,7 +8,7 @@ authors = [
     {name = "Reto Stamm", email = "phronesitron@retostamm.edu"},
 ]
 description = "Interact with scientific papers and ML language models"
-readme = "README.rst"
+readme = "README.md"
 requires-python = ">=3.9"
 keywords = ["openai", "literature"]
 license = {text = "GPL-3"}
@@ -24,10 +24,13 @@ dependencies = [
     "pdfminer.six",
     "termcolor",
 ]
-dynamic = ["version"]
+dynamic = ["version", "description"]
+
+[project.urls]
+Home="https://github.com/retospect/phronesitron"
 
 [project.scripts]
-my-script = "my_package.module:function"
+#my-script = "my_package.module:function"
 
 [tool.bumpver]
 current_version = "0.0.9"
