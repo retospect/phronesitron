@@ -20,75 +20,6 @@ except KeyError:
     print("\nhttps://platform.openai.com/account/api-keys")
     exit(-1)
 
-
-class Range(object):
-    """Checking the range before hitting the API"""
-
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
-
-    def __eq__(self, other):
-        return self.start <= other <= self.end
-
-    def __str__(self):
-        return "" + str(self.start) + "..." + str(self.end)
-
-
-parser = argparse.ArgumentParser(description="Chatbot.")
-parser.add_argument(
-    "-e",
-    "--engine",
-    choices=["davinci-003", "curie-001", "babbage-001", "ada-001"],
-    help="Engine to use",
-    default="davinci-003",
-)
-parser.add_argument(
-    "-c",
-    "--context",
-    type=str,
-    help="Provide a context prefix. env:bot_context",
-    default=os.getenv("bot_context", ""),
-)
-parser.add_argument(
-    "-m", "--money", type=int, help="how many thousand tokens maximum", default=2
-)
-parser.add_argument(
-    "-f",
-    "--file",
-    type=argparse.FileType("r"),
-    help="file to append to string",
-    default=None,
-)
-parser.add_argument(
-    "-t",
-    "--temp",
-    type=float,
-    help="0: deterministic, 2: I am very random",
-    default=0.8,
-)
-parser.add_argument(
-    "-i", "--iterations", type=int, help="Number of iterations to run", default=3
-)
-parser.add_argument(
-    "-w", "--wordcount", type=int, help="Number of words in answer", default=0
-)
-parser.add_argument("-u", "--unedited", action="store_true", help="Don't reformat text")
-parser.add_argument(
-    "-p",
-    "--paste",
-    action="store_true",
-    help="Append what's in the paste buffer to the question provided",
-)
-parser.add_argument("question", nargs="+", default="")
-
-if len(sys.argv) == 1:
-    parser.print_help(sys.stderr)
-    sys.exit(1)
-
-args = parser.parse_args()
-
-
 def generate_response(prompt):
     model_engine = "text-" + args.engine
     context = args.context
@@ -138,42 +69,98 @@ def generate_response(prompt):
     return message.strip(), info, actual_prompt
 
 
-user_input = " ".join(args.question)
 
-if args.paste:  # Paste the copy buffer
-    pb = pc.paste().split("\n")
-    bracketCount = 0
-    for char in pb[-1]:  # strip kindle refs
-        if char in "()":
-            bracketCount += 1
-    if bracketCount > 3:
-        pb[-1] = ""
-        print("(Removed suspected kindle citation from pasted text)")
-    user_input += "\n".join(pb)
+def ph_args():
+    parser = argparse.ArgumentParser(description="Chatbot.")
+    parser.add_argument(
+        "-e",
+        "--engine",
+        choices=["davinci-003", "curie-001", "babbage-001", "ada-001"],
+        help="Engine to use",
+        default="davinci-003",
+    )
+    parser.add_argument(
+        "-c",
+        "--context",
+        type=str,
+        help="Provide a context prefix. env:bot_context",
+        default=os.getenv("bot_context", ""),
+    )
+    parser.add_argument(
+        "-m", "--money", type=int, help="how many thousand tokens maximum", default=2
+    )
+    parser.add_argument(
+        "-f",
+        "--file",
+        type=argparse.FileType("r"),
+        help="file to append to string",
+        default=None,
+    )
+    parser.add_argument(
+        "-t",
+        "--temp",
+        type=float,
+        help="0: deterministic, 2: I am very random",
+        default=0.8,
+    )
+    parser.add_argument(
+        "-i", "--iterations", type=int, help="Number of iterations to run", default=3
+    )
+    parser.add_argument(
+        "-w", "--wordcount", type=int, help="Number of words in answer", default=0
+    )
+    parser.add_argument("-u", "--unedited", action="store_true", help="Don't reformat text")
+    parser.add_argument(
+        "-p",
+        "--paste",
+        action="store_true",
+        help="Append what's in the paste buffer to the question provided",
+    )
+    parser.add_argument("question", nargs="+", default="")
 
-if args.file:
-    with args.file as f:
-        user_input += "\n".join(f.readlines())
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
 
-response, info, actual_prompt = generate_response(user_input)
+    return = parser.parse_args()
 
-if not args.unedited:
-    nice_response = ""
-    for paragraph in response.split("\n"):
-        nice_response += "\n".join(tr.wrap(paragraph, replace_whitespace=False))
-        nice_response += "\n"
-    nice_response = nice_response[:-1]
-else:
-    nice_response = response
+def main_ph():
+    user_input = " ".join(args.question)
+
+    if args.paste:  # Paste the copy buffer
+        pb = pc.paste().split("\n")
+        bracketCount = 0
+        for char in pb[-1]:  # strip kindle refs
+            if char in "()":
+                bracketCount += 1
+        if bracketCount > 3:
+            pb[-1] = ""
+            print("(Removed suspected kindle citation from pasted text)")
+        user_input += "\n".join(pb)
+
+    if args.file:
+        with args.file as f:
+            user_input += "\n".join(f.readlines())
+
+    response, info, actual_prompt = generate_response(user_input)
+
+    if not args.unedited:
+        nice_response = ""
+        for paragraph in response.split("\n"):
+            nice_response += "\n".join(tr.wrap(paragraph, replace_whitespace=False))
+            nice_response += "\n"
+        nice_response = nice_response[:-1]
+    else:
+        nice_response = response
 
 
-with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
-    file.write(current_time)
-    file.write("\n¡BOT! " + actual_prompt + "\n\n")
-    file.write(nice_response)
-    file.write("\n")
-    file.write("[" + info + "]\n")
-    file.write("\n" + "=" * 80 + "\n\n")
+    with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
+        file.write(current_time)
+        file.write("\n¡BOT! " + actual_prompt + "\n\n")
+        file.write(nice_response)
+        file.write("\n")
+        file.write("[" + info + "]\n")
+        file.write("\n" + "=" * 80 + "\n\n")
 
 
-print(colored(nice_response, "green"))
+    print(colored(nice_response, "green"))
