@@ -8,7 +8,7 @@ import argparse
 import time
 from termcolor import colored
 import datetime
-import pyperclip as pc
+import pyperclip as pc  # type: ignore
 
 current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -66,7 +66,6 @@ parser.add_argument(
     type=float,
     help="0: deterministic, 2: I am very random",
     default=0.8,
-    choices=[Range(0, 2)],
 )
 parser.add_argument(
     "-i", "--iterations", type=int, help="Number of iterations to run", default=3

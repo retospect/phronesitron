@@ -10,6 +10,7 @@ setup(
     long_description=long_description,
     author="Reto Stamm",
     author_email="phronesitron@retostamm.com",
+    package_dir={"": "source"},
     packages=["phronesitron"],
     url="https://github.com/retospect/phronesitron",
     install_requires=[
@@ -21,5 +22,5 @@ setup(
         "pdfminer.six",
         "termcolor",
     ],
-    scripts=["phronesitron/ph", "phronesitron/paper2txt"],
+    scripts=["bin/ph", "bin/paper2txt"],
 )
