@@ -1,7 +1,9 @@
 # Maintainer's build notes
 
 ```
+rm -r build dist phronesitron.egg-info 
 ./phronesitron/ph # test
+./phronesitron/paper2txt
 git commit 
 git push
 python setup.py sdist bdist_wheel
@@ -14,7 +16,7 @@ gpg sign soon!
 
 ## test:
 ```
-pip uninstall openai pyperclip phronesitron pdfminer.six
+pip uninstall openai pyperclip phronesitron pdfminer.six termcolor
 python -m pip cache purge
 
 pip install phronesitron
