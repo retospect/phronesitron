@@ -10,7 +10,7 @@ setup(
     long_description=long_description,
     author="Reto Stamm",
     author_email="phronesitron@retostamm.com",
-    package_dir={"": "source"},
+    package_dir={"": "src"},
     packages=["phronesitron"],
     url="https://github.com/retospect/phronesitron",
     install_requires=[
