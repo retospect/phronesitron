@@ -4,7 +4,7 @@
 git commit 
 git clean -fdx --dry-run
 tox
-bumpver
+bumpver update --patch
 flit build
 flit publish
 
