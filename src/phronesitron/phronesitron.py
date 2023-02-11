@@ -122,7 +122,7 @@ def ph_args():
         parser.print_help(sys.stderr)
         sys.exit(1)
 
-    return = parser.parse_args()
+    return parser.parse_args()
 
 def main_ph():
     user_input = " ".join(args.question)
