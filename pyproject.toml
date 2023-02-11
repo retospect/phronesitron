@@ -25,7 +25,6 @@ dependencies = [
     "pdfminer.six",
     "termcolor",
 ]
-dynamic = ["version", "description"]
 
 [project.urls]
 Home="https://github.com/retospect/phronesitron"
