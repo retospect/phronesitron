@@ -10,6 +10,7 @@ authors = [
 description = "Interact with scientific papers and ML language models"
 readme = "README.md"
 requires-python = ">=3.9"
+version = "0.0.8"
 keywords = ["openai", "literature"]
 license = {text = "GPL-3"}
 classifiers = [
