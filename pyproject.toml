@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phronesitron"
+authors = [
+    {name = "Reto Stamm", email = "phronesitron@retostamm.edu"},
+]
+description = "Interact with scientific papers and ML language models"
+readme = "README.rst"
+requires-python = ">=3.9"
+keywords = ["openai", "literature"]
+license = {text = "GPL-3"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "wheel",
+    "openai",
+    "argparse",
+    "datetime",
+    "pyperclip",
+    "pdfminer.six",
+    "termcolor",
+]
+dynamic = ["version"]
+
+[project.scripts]
+my-script = "my_package.module:function"
