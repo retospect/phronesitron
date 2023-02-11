@@ -20,6 +20,7 @@ except KeyError:
     print("\nhttps://platform.openai.com/account/api-keys")
     exit(-1)
 
+
 def generate_response(prompt):
     model_engine = "text-" + args.engine
     context = args.context
@@ -69,7 +70,6 @@ def generate_response(prompt):
     return message.strip(), info, actual_prompt
 
 
-
 def ph_args():
     parser = argparse.ArgumentParser(description="Chatbot.")
     parser.add_argument(
@@ -109,7 +109,9 @@ def ph_args():
     parser.add_argument(
         "-w", "--wordcount", type=int, help="Number of words in answer", default=0
     )
-    parser.add_argument("-u", "--unedited", action="store_true", help="Don't reformat text")
+    parser.add_argument(
+        "-u", "--unedited", action="store_true", help="Don't reformat text"
+    )
     parser.add_argument(
         "-p",
         "--paste",
@@ -123,6 +125,7 @@ def ph_args():
         sys.exit(1)
 
     return parser.parse_args()
+
 
 def main_ph():
     user_input = " ".join(args.question)
@@ -153,7 +156,6 @@ def main_ph():
     else:
         nice_response = response
 
-
     with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
         file.write(current_time)
         file.write("\n¡BOT! " + actual_prompt + "\n\n")
@@ -161,6 +163,5 @@ def main_ph():
         file.write("\n")
         file.write("[" + info + "]\n")
         file.write("\n" + "=" * 80 + "\n\n")
-
 
     print(colored(nice_response, "green"))
