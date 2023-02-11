@@ -16,7 +16,7 @@ gpg sign soon!
 
 ## test:
 ```
-pip uninstall openai pyperclip phronesitron pdfminer.six termcolor
+pip uninstall -y openai pyperclip phronesitron pdfminer.six termcolor
 python -m pip cache purge
 
 pip install phronesitron

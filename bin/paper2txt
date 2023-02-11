@@ -15,7 +15,7 @@ parser.add_argument('-p', '--separate-pages')
 args = parser.parse_args()
 
 
-
+# from https://stackoverflow.com/questions/26494211/extracting-text-from-a-pdf-file-using-pdfminer-in-python
 def convert_pdf_to_txt(path):
     # Started with stuff from here: https://stackoverflow.com/questions/39854841/pdfminer-python-3-5
     rsrcmgr = PDFResourceManager()
