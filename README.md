@@ -6,22 +6,11 @@ tools like OpenAI's models.
 Example use:
 
 ```
-> phronesitron what is the metaphysical meaning of a slinky
-The metaphysical meaning of a slinky can be interpreted in several
-ways. On one level, it can represent the interconnectedness of all
-things, with its seemingly endless loops of energy and motion. It can
-also be seen as a symbol of resilience and adaptability, as it can be
-stretched and bent without breaking. Finally, it can be seen as a
-metaphor for the impermanence of life, with its ever-changing shapes
-and movements.
+> ph explain quantum physics in 10 words
+Mysterious particles with probabilistic behavior in complex systems.
 ```
 
 Currently, openAI models are supported.
-
-You can alias phronesitron to ph if you like.
-```
-alias ph=phronesitron
-```
 
 # Setup
 
