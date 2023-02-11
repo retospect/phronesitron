@@ -42,5 +42,5 @@ push = true
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
-"src/reader/__init__.py" = ["{version}"]
+"src/phronesitron/__init__.py" = ["{version}"]
 
