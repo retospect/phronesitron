@@ -1,5 +1,6 @@
 build
 dist
 phronesitron.egg-info
+__pycache__
 ***.pdf
 ***.txt

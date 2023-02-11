@@ -6,6 +6,7 @@ rm -r build dist phronesitron.egg-info
 ./phronesitron/paper2txt
 git commit 
 git push
+tox
 python setup.py sdist bdist_wheel
 twine upload dist/*
 git tag 0.0.x
