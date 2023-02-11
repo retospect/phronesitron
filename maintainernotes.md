@@ -1,11 +1,7 @@
 # Maintainer's build notes
 
 ```
-rm -r build dist phronesitron.egg-info 
-./phronesitron/ph # test
-./phronesitron/paper2txt
 git commit 
-git push
 git clean -fdx --dry-run
 tox
 bumpver
