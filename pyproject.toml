@@ -1,18 +1,16 @@
 [build-system]
-requires = ["flit"]
-build-backend = "flit_core.buildapi"
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "phronesitron"
-authors = [
-    {name = "Reto Stamm", email = "phronesitron@retostamm.edu"},
-]
-description = "Interact with scientific papers and ML language models"
+authors = ["Reto Stamm"]
+description = "Interact with ML language models from the commandline"
 readme = "README.md"
 requires-python = ">=3.9"
 version = "0.1.1"
 keywords = ["openai", "literature"]
-license = {text = "GPL-3"}
+license = "GPL-3"
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
@@ -26,11 +24,10 @@ dependencies = [
     "termcolor",
 ]
 
-[project.urls]
-Home="https://github.com/retospect/phronesitron"
+homepage="https://github.com/retospect/phronesitron"
 
 [project.scripts]
-phronesitron = "phronesitron:ph_main"
+ph = "phronesitron.phronesitron:ph_main"
 
 [tool.bumpver]
 current_version = "0.1.1"
