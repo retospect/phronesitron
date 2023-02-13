@@ -130,7 +130,7 @@ def ph_args():
 # https://github.com/daveshap/RecursiveSummarizer/blob/main/recursively_summarize.py
 
 
-def phmain(self):
+def ph_main():
     user_input = " ".join(args.question)
 
     if args.paste:  # Paste the copy buffer

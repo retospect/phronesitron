@@ -23,7 +23,7 @@ pyperclip = "*"
 "pdfminer.six" = "*"
 termcolor = "*"
 
-[project.scripts]
+[tool.poetry.scripts]
 ph = "phronesitron.phronesitron:ph_main"
 
 [tool.bumpver]
