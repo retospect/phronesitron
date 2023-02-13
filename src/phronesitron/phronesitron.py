@@ -18,7 +18,6 @@ except KeyError:
     print("\nhttps://platform.openai.com/account/api-keys")
     exit(-1)
 
-
 def generate_response(prompt):
     model_engine = "text-" + args.engine
     context = args.context
@@ -166,3 +165,8 @@ def ph_main():
         file.write("\n" + "=" * 80 + "\n\n")
 
     print(colored(nice_response, "green"))
+
+
+
+
+
