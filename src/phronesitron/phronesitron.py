@@ -130,45 +130,41 @@ def ph_args():
 # https://github.com/daveshap/RecursiveSummarizer/blob/main/recursively_summarize.py
 
 
-class Phron:
-    def __init__(self):
-        pass
+def phmain(self):
+    user_input = " ".join(args.question)
 
-    def phmain(self):
-        user_input = " ".join(args.question)
+    if args.paste:  # Paste the copy buffer
+        pb = pc.paste().split("\n")
+        bracketCount = 0
+        for char in pb[-1]:  # strip kindle refs
+            if char in "()":
+                bracketCount += 1
+        if bracketCount > 3:
+            pb[-1] = ""
+            print("(Removed suspected kindle citation from pasted text)")
+        user_input += "\n".join(pb)
 
-        if args.paste:  # Paste the copy buffer
-            pb = pc.paste().split("\n")
-            bracketCount = 0
-            for char in pb[-1]:  # strip kindle refs
-                if char in "()":
-                    bracketCount += 1
-            if bracketCount > 3:
-                pb[-1] = ""
-                print("(Removed suspected kindle citation from pasted text)")
-            user_input += "\n".join(pb)
+    if args.file:
+        with args.file as f:
+            user_input += "\n".join(f.readlines())
 
-        if args.file:
-            with args.file as f:
-                user_input += "\n".join(f.readlines())
+    response, info, actual_prompt = generate_response(user_input)
 
-        response, info, actual_prompt = generate_response(user_input)
+    if not args.unedited:
+        nice_response = ""
+        for paragraph in response.split("\n"):
+            nice_response += "\n".join(tr.wrap(paragraph, replace_whitespace=False))
+            nice_response += "\n"
+        nice_response = nice_response[:-1]
+    else:
+        nice_response = response
 
-        if not args.unedited:
-            nice_response = ""
-            for paragraph in response.split("\n"):
-                nice_response += "\n".join(tr.wrap(paragraph, replace_whitespace=False))
-                nice_response += "\n"
-            nice_response = nice_response[:-1]
-        else:
-            nice_response = response
+    with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
+        file.write(current_time)
+        file.write("\n¡BOT! " + actual_prompt + "\n\n")
+        file.write(nice_response)
+        file.write("\n")
+        file.write("[" + info + "]\n")
+        file.write("\n" + "=" * 80 + "\n\n")
 
-        with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
-            file.write(current_time)
-            file.write("\n¡BOT! " + actual_prompt + "\n\n")
-            file.write(nice_response)
-            file.write("\n")
-            file.write("[" + info + "]\n")
-            file.write("\n" + "=" * 80 + "\n\n")
-
-        print(colored(nice_response, "green"))
+    print(colored(nice_response, "green"))
