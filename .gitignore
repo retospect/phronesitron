@@ -3,6 +3,7 @@ dist
 phronesitron.egg-info
 __pycache__
 .tox
+poetry.lock
 ***.swp
 ***.pdf
 ***.txt
