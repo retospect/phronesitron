@@ -24,7 +24,7 @@ pyperclip = "*"
 termcolor = "*"
 
 [tool.poetry.scripts]
-ph = "phronesitron.phronesitron:ph_main"
+ph = "phronesitron.executables:ph_main"
 
 [tool.bumpver]
 current_version = "0.1.3"
