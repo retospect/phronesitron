@@ -2,29 +2,26 @@
 requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "phronesitron"
 authors = ["Reto Stamm"]
 description = "Interact with ML language models from the commandline"
 readme = "README.md"
-requires-python = ">=3.9"
 version = "0.1.1"
 keywords = ["openai", "literature"]
 license = "GPL-3"
-classifiers = [
-    "Programming Language :: Python :: 3",
-]
-dependencies = [
-    "wheel",
-    "openai",
-    "argparse",
-    "datetime",
-    "pyperclip",
-    "pdfminer.six",
-    "termcolor",
-]
+classifiers = [ "Programming Language :: Python :: 3", ]
 
 homepage="https://github.com/retospect/phronesitron"
+
+[tool.poetry.dependencies]
+wheel = "*"
+openai = "*"
+argparse = "*"
+datetime = "*"
+pyperclip = "*"
+"pdfminer.six" = "*"
+termcolor = "*"
 
 [project.scripts]
 ph = "phronesitron.phronesitron:ph_main"

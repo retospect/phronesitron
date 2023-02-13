@@ -3,5 +3,6 @@ dist
 phronesitron.egg-info
 __pycache__
 .tox
+***.swp
 ***.pdf
 ***.txt
