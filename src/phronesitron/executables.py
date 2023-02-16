@@ -6,12 +6,8 @@ import os
 import sys
 import textwrap as tr
 import argparse
-import time
 from termcolor import colored
-import datetime
 import pyperclip as pc  # type: ignore
-
-current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
 try:
     openai.api_key = os.environ["OPENAIKEY"]
@@ -160,7 +156,6 @@ def ph_main():
         nice_response = response
 
     with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
-        file.write(current_time)
         file.write("\n¡BOT! " + actual_prompt + "\n\n")
         file.write(nice_response)
         file.write("\n")

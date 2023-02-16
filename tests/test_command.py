@@ -3,8 +3,9 @@ import sys
 
 def test_phronesitron_help():
     ''' Checks that the commandline install works '''
-    p = Popen(
-        [sys.executable, "ph"], stdout=PIPE, stderr=STDOUT
+    p = Popen( ["ph"], stdout=PIPE, stderr=STDOUT
     )
     out, _ = p.communicate()
-    assert "very random" in out.decode("utf-8", "replace")
+    output = out.decode("utf-8", "replace")
+    print(output)
+    assert "very random" in output
