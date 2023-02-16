@@ -4,6 +4,7 @@ import sys
 import openai
 import os
 import sys
+import time
 import textwrap as tr
 import argparse
 from termcolor import colored
@@ -17,7 +18,7 @@ except KeyError:
     print("\nhttps://platform.openai.com/account/api-keys")
     exit(-1)
 
-def generate_response(prompt):
+def generate_response(prompt, args):
     model_engine = "text-" + args.engine
     context = args.context
     if args.context != "":
@@ -44,10 +45,10 @@ def generate_response(prompt):
             success = True
         except Exception as e:
             print("{}: {}\r".format(n, str(e)))
+            time.sleep(n)
         n += 1
         if n > 10:
             exit(-1)
-        time.sleep(n)
     sys.stdout.write("\r")
     sys.stdout.flush()
 
@@ -247,7 +248,7 @@ def ph_main():
         with args.file as f:
             user_input += "\n".join(f.readlines())
 
-    response, info, actual_prompt = generate_response(user_input)
+    response, info, actual_prompt = generate_response(user_input, args)
 
     if not args.unedited:
         nice_response = ""
@@ -259,7 +260,6 @@ def ph_main():
         nice_response = response
 
     with open(os.path.expanduser("~") + "/.botlog.txt", "a") as file:
-        file.write(current_time)
         file.write("\n¡BOT! " + actual_prompt + "\n\n")
         file.write(nice_response)
         file.write("\n")
