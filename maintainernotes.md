@@ -16,5 +16,5 @@ gpg sign soon!
 pip uninstall -y openai pyperclip phronesitron pdfminer.six termcolor
 python -m pip cache purge
 
-pip install phronesitron
+pip install --force-reinstall dist/phronesitron*.whl
 ```
