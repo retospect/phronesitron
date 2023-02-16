@@ -4,7 +4,6 @@
 git commit 
 git clean -fdx --dry-run
 tox
-poetry run ph
 bumpver update --patch
 poetry publish --build --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
