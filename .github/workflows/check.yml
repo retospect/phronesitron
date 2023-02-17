@@ -1,4 +1,4 @@
-name: Tests
+name: check
   # lifted from https://github.com/ymyzk/tox-gh-actions/blob/master/.github/workflows/tests.yml
 
 on:
