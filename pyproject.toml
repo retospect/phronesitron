@@ -19,8 +19,8 @@ wheel = "*"
 openai = "*"
 argparse = "*"
 pyperclip = "*"
-"pdfminer.six" = "*"
 termcolor = "*"
+paper2txt = "*"
 
 [tool.poetry.scripts]
 ph = "phronesitron.executables:ph_main"
