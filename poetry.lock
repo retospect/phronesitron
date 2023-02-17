@@ -237,6 +237,21 @@ tqdm = "*"
 dev = ["black (==20.8b1)", "pytest (>=6.0.0,<7.0.0)"]
 
 [[package]]
+name = "paper2txt"
+version = "0.0.4"
+description = "Simple tool to extract text from scientific PDFs"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "paper2txt-0.0.4-py2.py3-none-any.whl", hash = "sha256:be2ba226cd0d8a95eb372c707c75cb37c356bf07d9ef5b044aa2584117c551df"},
+    {file = "paper2txt-0.0.4.tar.gz", hash = "sha256:cb5439ad9588eca56f9368b967eed597b638453513222d579a8a40447bb887ad"},
+]
+
+[package.dependencies]
+pdfminer = "*"
+
+[[package]]
 name = "pathlib2"
 version = "2.3.7.post1"
 description = "Object-oriented filesystem paths"
@@ -254,26 +269,18 @@ six = "*"
 typing = {version = "*", markers = "python_version < \"3.5\""}
 
 [[package]]
-name = "pdfminer-six"
-version = "20191110"
+name = "pdfminer"
+version = "20191016"
 description = "PDF parser and analyzer"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pdfminer.six-20191110-py2.py3-none-any.whl", hash = "sha256:ca2ca58f3ac66a486bce53a6ddba95dc2b27781612915fa41c444790ba9cd2a8"},
-    {file = "pdfminer.six-20191110.tar.gz", hash = "sha256:141a53ec491bee6d45bf9b2c7f82601426fb5d32636bcf6b9c8a8f3b6431fea6"},
+    {file = "pdfminer-20191016.tar.gz", hash = "sha256:73cf62260993f399016c5c04754e46afede35665b340b57da9fddca63300bbfc"},
 ]
 
 [package.dependencies]
-chardet = {version = "*", markers = "python_version > \"3.0\""}
 pycryptodome = "*"
-six = "*"
-sortedcontainers = "*"
-
-[package.extras]
-dev = ["nose", "tox"]
-docs = ["sphinx", "sphinx-argparse"]
 
 [[package]]
 name = "pycparser"
@@ -428,18 +435,6 @@ files = [
 ]
 
 [[package]]
-name = "sortedcontainers"
-version = "2.4.0"
-description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "sortedcontainers-2.4.0-py2.py3-none-any.whl", hash = "sha256:a163dcaede0f1c021485e957a39245190e74249897e2ae4b2aa38595db237ee0"},
-    {file = "sortedcontainers-2.4.0.tar.gz", hash = "sha256:25caa5a06cc30b6b83d11423433f65d1f9d76c4c6a0c90e3379eaa43b9bfdb88"},
-]
-
-[[package]]
 name = "termcolor"
 version = "1.1.0"
 description = "ANSII Color formatting for output in terminal."
@@ -519,4 +514,4 @@ test = ["pytest (>=3.0.0)", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = "*"
-content-hash = "da14d981ecadab7cb090d9006c92313df41c39d7af3dbe7a2928214f93708a64"
+content-hash = "daa762e5634f817de039f9ce696bc636da425f04fe749badb62364a4993d7d85"
