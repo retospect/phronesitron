@@ -9,6 +9,7 @@ import textwrap as tr
 import argparse
 from termcolor import colored
 import pyperclip as pc  # type: ignore
+import re
 
 try:
     openai.api_key = os.environ["OPENAIKEY"]
@@ -32,12 +33,17 @@ def generate_response(prompt, args):
 
     success = False
     n = 0
+    prompt_length = len(re.compile("[ \n\t]+").split(prompt))
+    
+    # use any remaining tokens for the answer.
+    answer_tokens = args.money-prompt_length
+
     while not success:
         try:
             completions = openai.Completion.create(
                 engine=model_engine,
                 prompt=prompt,
-                max_tokens=1024 * args.money,
+                max_tokens=answer_tokens,
                 n=1,
                 stop=None,
                 temperature=args.temp,
@@ -84,7 +90,7 @@ def ph_args():
         default=os.getenv("bot_context", ""),
     )
     parser.add_argument(
-        "-m", "--money", type=int, help="how many thousand tokens maximum", default=2
+        "-m", "--money", type=int, help="how many tokens for the request and the answer", default=100000
     )
     parser.add_argument(
         "-f",
@@ -184,7 +190,7 @@ def ph_args():
         default=os.getenv("bot_context", ""),
     )
     parser.add_argument(
-        "-m", "--money", type=int, help="how many thousand tokens maximum", default=2
+        "-m", "--money", type=int, help="how many thousand tokens maximum", default=4096
     )
     parser.add_argument(
         "-f",
