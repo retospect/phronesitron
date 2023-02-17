@@ -1,3 +1,5 @@
+[![check](https://github.com/retospect/phronesitron/actions/workflows/check.yml/badge.svg)](https://github.com/retospect/phronesitron/actions/workflows/check.yml)
+
 # Phronesitron
 
 Phronesitron is a set of tools to interact with textual AI
