@@ -35,15 +35,12 @@ def generate_response(prompt, args):
     n = 0
     prompt_length = len(re.compile("[ \n\t]+").split(prompt))
     
-    # use any remaining tokens for the answer.
-    answer_tokens = args.money-prompt_length
-
     while not success:
         try:
             completions = openai.Completion.create(
                 engine=model_engine,
                 prompt=prompt,
-                max_tokens=answer_tokens,
+                max_tokens=args.money,
                 n=1,
                 stop=None,
                 temperature=args.temp,
@@ -145,11 +142,11 @@ def ph_main():
         if bracketCount > 3:
             pb[-1] = ""
             print("(Removed suspected kindle citation from pasted text)")
-        user_input += "\n".join(pb)
+        user_input += " ".join(pb)
 
     if args.file:
         with args.file as f:
-            user_input += "\n".join(f.readlines())
+            user_input += " ".join(f.readlines())
 
     response, info, actual_prompt = generate_response(user_input)
 
@@ -190,7 +187,7 @@ def ph_args():
         default=os.getenv("bot_context", ""),
     )
     parser.add_argument(
-        "-m", "--money", type=int, help="how many thousand tokens maximum", default=4096
+        "-m", "--money", type=int, help="how many tokens maximum for the answer", default=512
     )
     parser.add_argument(
         "-f",
