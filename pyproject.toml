@@ -15,7 +15,6 @@ classifiers = [ "Programming Language :: Python :: 3", ]
 homepage="https://github.com/retospect/phronesitron"
 
 [tool.poetry.dependencies]
-wheel = "*"
 openai = "*"
 argparse = "*"
 pyperclip = "*"

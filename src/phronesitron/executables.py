@@ -12,9 +12,9 @@ import pyperclip as pc  # type: ignore
 import re
 
 try:
-    openai.api_key = os.environ["OPENAIKEY"]
+    openai.api_key = os.environ["OPENAI_API_KEY"]
 except KeyError:
-    print("Please set the OPENAIKEY environment variable.")
+    print("Please set the OPENAI_API_KEY environment variable.")
     print("You can get a key with some credits here:")
     print("\nhttps://platform.openai.com/account/api-keys")
     exit(-1)
@@ -65,6 +65,8 @@ def generate_response(prompt, args):
         ),
         "blue",
     )
+    davinciCost = 20 # in µ$
+    print("Cost {}µ$".format(completions.usage.total_tokens*davinciCost)) 
     message = completions.choices[0].text
 
     return message.strip(), info, actual_prompt
