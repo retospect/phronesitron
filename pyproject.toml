@@ -7,7 +7,7 @@ name = "phronesitron"
 authors = ["Reto Stamm"]
 description = "Interact with ML language models from the commandline"
 readme = "README.md"
-version = "0.1.7"
+version = "0.1.8"
 keywords = ["openai", "literature"]
 license = "GPL-3"
 classifiers = [ "Programming Language :: Python :: 3", ]
@@ -25,7 +25,7 @@ paper2txt = "*"
 ph = "phronesitron.executables:ph_main"
 
 [tool.bumpver]
-current_version = "0.1.7"
+current_version = "0.1.8"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 commit = true
