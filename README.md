@@ -1,4 +1,5 @@
 [![check](https://github.com/retospect/phronesitron/actions/workflows/check.yml/badge.svg)](https://github.com/retospect/phronesitron/actions/workflows/check.yml)
+[![PyPI version](https://badge.fury.io/py/phronesitron.svg)](https://badge.fury.io/py/phronesitron)
 
 # Phronesitron
 
