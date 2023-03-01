@@ -17,3 +17,5 @@ python -m pip cache purge
 
 poetry build; pip install --force-reinstall dist/*.whl; rehash
 ```
+ 
+Add stuff from https://openai.com/blog/introducing-chatgpt-and-whisper-apis
