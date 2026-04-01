@@ -1,8 +1,7 @@
-build
-dist
-phronesitron.egg-info
-__pycache__
-.tox
-***.swp
-***.pdf
-***.txt
+build/
+dist/
+*.egg-info/
+__pycache__/
+.tox/
+*.swp
+.pytest_cache/

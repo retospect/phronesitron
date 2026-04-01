@@ -1,3 +1,3 @@
-from phronesitron import *
-__version__ = "0.1.8"
+"""phronesitron — one-shot LLM CLI with MCP tool support."""
 
+__version__ = "1.0.0"

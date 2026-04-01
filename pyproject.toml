@@ -1,38 +1,50 @@
 [build-system]
-requires = ["poetry-core>=1.1.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "phronesitron"
-authors = ["Reto Stamm"]
-description = "Interact with ML language models from the commandline"
+version = "1.0.0"
+description = "One-shot LLM CLI with MCP tool support"
 readme = "README.md"
-version = "0.1.8"
-keywords = ["openai", "literature"]
-license = "GPL-3"
-classifiers = [ "Programming Language :: Python :: 3", ]
+license = "GPL-3.0-or-later"
+requires-python = ">=3.11"
+authors = [{ name = "Reto Stamm" }]
+keywords = ["llm", "cli", "mcp"]
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = [
+    "acatome-lambic>=0.5",
+    "termcolor>=2.0",
+]
 
-homepage="https://github.com/retospect/phronesitron"
+[project.optional-dependencies]
+litellm = ["litellm>=1.0,!=1.82.7,!=1.82.8"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24"]
 
-[tool.poetry.dependencies]
-openai = "*"
-argparse = "*"
-pyperclip = "*"
-termcolor = "*"
-paper2txt = "*"
+[project.urls]
+Homepage = "https://github.com/retospect/phronesitron"
 
-[tool.poetry.scripts]
-ph = "phronesitron.executables:ph_main"
+[project.scripts]
+ph = "phronesitron.cli:main"
 
-[tool.bumpver]
-current_version = "0.1.8"
-version_pattern = "MAJOR.MINOR.PATCH"
-commit_message = "bump version {old_version} -> {new_version}"
+[tool.hatch.build.targets.wheel]
+packages = ["src/phronesitron"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.bumpversion]
+current_version = "1.0.0"
 commit = true
 tag = true
-push = true
+tag_name = "v{new_version}"
 
-[tool.bumpver.file_patterns]
-"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
-"src/phronesitron/__init__.py" = ["{version}"]
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
 
+[[tool.bumpversion.files]]
+filename = "src/phronesitron/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
