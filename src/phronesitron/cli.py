@@ -11,15 +11,12 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-import os
 import sys
 import textwrap as tr
 
-from termcolor import colored
-
 from acatome_lambic.core.config import LlmConfig, McpServer, ShellConfig
-from acatome_lambic.core.llm import LlmClient, LlmResponse
-from acatome_lambic.core.session import ChatSession, TurnEvent
+from acatome_lambic.core.session import ChatSession
+from termcolor import colored
 
 # Well-known MCP servers — shortcuts for --mcp flag
 _MCP_SHORTCUTS: dict[str, list[str]] = {
@@ -54,11 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Question or prompt (also reads stdin if piped)",
     )
     parser.add_argument(
-        "-m", "--model",
+        "-m",
+        "--model",
         type=str,
         default=None,
         help="LLM model spec: 'provider/model' or just 'model' for ollama "
-             "(default: ollama/qwen3.5:9b)",
+        "(default: ollama/qwen3.5:9b)",
     )
     parser.add_argument(
         "--mcp",
@@ -66,10 +64,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=[],
         metavar="SERVER",
         help="Enable MCP server (shortcut or command). Repeatable. "
-             f"Shortcuts: {', '.join(sorted(_MCP_SHORTCUTS))}",
+        f"Shortcuts: {', '.join(sorted(_MCP_SHORTCUTS))}",
     )
     parser.add_argument(
-        "-t", "--temperature",
+        "-t",
+        "--temperature",
         type=float,
         default=0.7,
         help="Sampling temperature (default: 0.7)",
@@ -86,12 +85,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Disable reasoning/thinking mode",
     )
     parser.add_argument(
-        "-u", "--unformatted",
+        "-u",
+        "--unformatted",
         action="store_true",
         help="Don't word-wrap output",
     )
     parser.add_argument(
-        "-s", "--system",
+        "-s",
+        "--system",
         type=str,
         default="",
         help="System prompt",
@@ -102,7 +103,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="Disable colored output",
     )
     parser.add_argument(
-        "-v", "--verbose",
+        "-v",
+        "--verbose",
         action="store_true",
         help="Show tool calls and metadata",
     )
@@ -184,12 +186,20 @@ async def _run(args: argparse.Namespace) -> int:
             srv_info = status.get("servers", {})
             for name, st in srv_info.items():
                 icon = "●" if st == "connected" else "○"
-                print(colored(f"  {icon} {name}: {st}", "blue") if use_color
-                      else f"  {icon} {name}: {st}", file=sys.stderr)
+                print(
+                    colored(f"  {icon} {name}: {st}", "blue")
+                    if use_color
+                    else f"  {icon} {name}: {st}",
+                    file=sys.stderr,
+                )
             n_tools = status.get("tools", 0)
             if n_tools:
-                print(colored(f"  {n_tools} tools available", "blue") if use_color
-                      else f"  {n_tools} tools available", file=sys.stderr)
+                print(
+                    colored(f"  {n_tools} tools available", "blue")
+                    if use_color
+                    else f"  {n_tools} tools available",
+                    file=sys.stderr,
+                )
 
         # Run the one-shot turn
         collected = ""
@@ -203,14 +213,17 @@ async def _run(args: argparse.Namespace) -> int:
                 elapsed = tr_data.elapsed
                 trunc = " (truncated)" if tr_data.truncated else ""
                 line = f"  ← {name} ({elapsed:.1f}s){trunc}"
-                print(colored(line, "blue") if use_color else line,
-                      file=sys.stderr)
+                print(colored(line, "blue") if use_color else line, file=sys.stderr)
 
             elif event.kind == "thinking" and args.verbose:
                 lines = event.data.strip().split("\n")
                 preview = lines[0][:80] + ("…" if len(lines[0]) > 80 else "")
-                print(colored(f"  💭 {preview}", "cyan") if use_color
-                      else f"  (thinking) {preview}", file=sys.stderr)
+                print(
+                    colored(f"  💭 {preview}", "cyan")
+                    if use_color
+                    else f"  (thinking) {preview}",
+                    file=sys.stderr,
+                )
 
             elif event.kind == "error":
                 print(f"Error: {event.data}", file=sys.stderr)
@@ -222,8 +235,7 @@ async def _run(args: argparse.Namespace) -> int:
                     f"  tokens: {u['prompt_tokens']}→{u['completion_tokens']} "
                     f"stop: {u['stop_reason']}"
                 )
-                print(colored(line, "blue") if use_color else line,
-                      file=sys.stderr)
+                print(colored(line, "blue") if use_color else line, file=sys.stderr)
 
         # Format and print output
         if collected.strip():

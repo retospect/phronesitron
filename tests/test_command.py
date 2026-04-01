@@ -1,6 +1,6 @@
 """Tests for phronesitron CLI."""
 
-from phronesitron.cli import build_parser, _parse_model, _resolve_mcp, _wrap_text
+from phronesitron.cli import _parse_model, _resolve_mcp, _wrap_text, build_parser
 
 
 def test_parser_help_shows_mcp():
@@ -21,7 +21,8 @@ def test_parse_model_bare_name():
 
 def test_parse_model_with_provider():
     assert _parse_model("anthropic/claude-sonnet-4-20250514") == (
-        "anthropic", "claude-sonnet-4-20250514"
+        "anthropic",
+        "claude-sonnet-4-20250514",
     )
 
 

@@ -1,7 +1,9 @@
-build/
-dist/
-*.egg-info/
 __pycache__/
-.tox/
-*.swp
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
 .pytest_cache/
+.venv/
