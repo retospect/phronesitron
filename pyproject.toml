@@ -20,7 +20,7 @@ classifiers = [
 
 dependencies = [
     "acatome-lambic>=0.5",
-    "termcolor>=2.0",
+    "termcolor>=3.3.0",
 ]
 
 [project.urls]
