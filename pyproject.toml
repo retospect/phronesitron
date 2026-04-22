@@ -28,7 +28,7 @@ Homepage = "https://github.com/retospect/phronesitron"
 Repository = "https://github.com/retospect/phronesitron"
 
 [project.optional-dependencies]
-litellm = ["litellm!=1.82.7,!=1.82.8,>=1.83.7"]
+litellm = ["litellm!=1.82.7,!=1.82.8,>=1.83.10"]
 
 [project.scripts]
 ph = "phronesitron.cli:main"
